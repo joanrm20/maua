@@ -91,7 +91,7 @@ var practiceGame =  angular.module("grockitApp.practiceGame",['ng-breadcrumbs'])
       reloadOnSearch: false
     })
 
-    .when('/:subject/dashboard/practice/:questionId', {templateUrl: 'app/practiceGame/practice/practice-mockup.tpl.html', label: 'practice', resolve: {deps: function ($q, $rootScope) {
+    .when('/:subject/dashboard/practice/:questionId', {templateUrl: 'app/practiceGame/practice/practice.tpl.html', label: 'practice', resolve: {deps: function ($q, $rootScope) {
       var deferred = $q.defer(),
         essentials = [
           filePath.practice.practiceCtrl,
