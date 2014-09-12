@@ -484,13 +484,20 @@ practiceGame.directive('oneChoice', function () {
   }
 })
 
-.directive('splashMessage', function() {
+.directive('splashMessage', function(Utilities) {
   return {
     restrict: 'A',
     templateUrl: 'app/practiceGame/common/directives.tpl/splash-message.tpl.html',
     scope: {
       isVisible: '=',
       word: '='
+    },
+    link: function(scope){
+      var loaderImages =[
+      'CloudLoadBlue350350.gif'
+      ];
+
+     scope.loader = loaderImages[Utilities.random(loaderImages.length - 1)];
     }
 
   };
