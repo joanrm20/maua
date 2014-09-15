@@ -1,6 +1,9 @@
 angular.module("grockitApp.authServices", ['webStorageModule'])
-
-
+.constant('UserRoles', {
+  admin: 'admin',
+  member: 'member',
+  guest: 'guest'
+})
 .factory('Auth', function ($cookies, UserRoles, webStorage, Users, Utilities, $location, $q, Headers,imageVersion) {
 
   function defaultGroup(user) {

@@ -1,4 +1,4 @@
-angular.module('grockitApp.services', ['webStorageModule'])
+angular.module("grockitApp.application")
 .factory('Utilities', function($rootScope,$http,$location,$route,$q,$window,webStorage,VideoService,environmentCons) {
 
   var internalUtilities = {
@@ -140,6 +140,7 @@ angular.module('grockitApp.services', ['webStorageModule'])
 }
 })
 
+angular.module("grockitApp.application")
 .factory('Alerts', function() {
   return {
     showAlert: function (alertMsg, type) {
@@ -160,6 +161,7 @@ angular.module('grockitApp.services', ['webStorageModule'])
   }
 })
 
+angular.module("grockitApp.application")
 .factory('GrockitNewFeatures', function($http, Utilities,environmentCons) {
 
   return {
@@ -181,6 +183,7 @@ angular.module('grockitApp.services', ['webStorageModule'])
   }
 })
 
+angular.module("grockitApp.application")
 .service('ServiceFactory', function() {
   this.items = [];
   this.lastId = 1;
@@ -203,6 +206,7 @@ angular.module('grockitApp.services', ['webStorageModule'])
   };
 })
 
+angular.module("grockitApp.application")
 .factory('Timer', ['$interval', 'ServiceFactory',
   function($interval, ServiceFactory) {
     var createTimer = function() {
@@ -238,6 +242,7 @@ angular.module('grockitApp.services', ['webStorageModule'])
     };
   }])
 
+angular.module("grockitApp.application")
 .factory('DateFormatter', function() {
   var formatSeconds = function(seconds) {
     var secs = seconds,

@@ -1,40 +1,42 @@
 // load all of the dependencies asynchronously.
 
 var paths={
-    jqueryGrockit:'common/jquery.grockit.js',
-    constants:'common/constants/application.constants.js',
-    restAngularFactory:'common/restAngular/restAngular.service.js',
-    restAngular:'common/restAngular/restAngular.module.js',
-    home:'app/home/home.module.js',
-    practiceGame:'app/practiceGame/practiceGame.module.js',
-    generalServices:'common/services/application.services.js',
-    generalFilters:'common/filters/application.filters.js',
-    analyticService: 'common/services/analytic.service.js',
-    generalDirectives:'common/directives/general.directive.js',
-    authServices:'common/services/auth.services.js',
-    accountCtrl:'app/account/application.ctrl.js',
-    app:'app/app.js'
+  jqueryGrockit:'common/jquery.grockit.js',
+  restAngularFactory:'app/common/api-requests/restAngular.service.js',
+  restAngular:'app/common/api-requests/restAngular.module.js',
+  home:'app/home/home.module.js',
+  practiceGame:'app/practiceGame/practiceGame.module.js',
+  analyticService: 'app/common/services/analytic.service.js',
+  generalDirectives:'common/directives/general.directive.js',
+  authServices:'app/common/services/auth.services.js',
+  application:'app/application/application.module.js',
+  appController: 'app/application/application.ctrl.js',
+  appFilters:'app/application/application.filters.js',
+  appServices:'app/application/application.services.js',
+  app:'app/app.js'
 };
 
 $script([
-    paths.constants,
-    paths.jqueryGrockit,
-    paths.generalServices,
-    paths.generalFilters,
-    paths.analyticService,
-    paths.generalDirectives,
+  paths.jqueryGrockit,
+  paths.application,
+  paths.appController,
+  paths.appFilters,
+  paths.appServices,
+  paths.analyticService,
+  paths.generalDirectives
+
+  ],'init')
+
+.ready('init', function() {
+  $script([
     paths.restAngular,
+    paths.restAngularFactory,
+    paths.authServices,
     paths.home,
     paths.practiceGame,
-    paths.authServices,
     paths.app
-],'init')
-
-    .ready('init', function() {
-		$script([
-				paths.restAngularFactory,
-				paths.accountCtrl
-		], function () {
-				angular.bootstrap(document, ['grockitApp']);
-		});
+    ], function () {
+      angular.bootstrap(document, ['grockitApp']);
+    });
 });
+

@@ -1,4 +1,4 @@
-angular.module('grockitApp.constants', [])
+angular.module("grockitApp.application")
 .constant('UserRoles', {
     admin: 'admin',
     member: 'member',

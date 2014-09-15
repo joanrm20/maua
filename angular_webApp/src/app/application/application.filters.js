@@ -1,4 +1,4 @@
-angular.module('grockitApp.filters', [])
+application
 .filter('formatSeconds', ['DateFormatter', function(DateFormatter) {
   return function(seconds) {
     return DateFormatter.formatSeconds(seconds);
