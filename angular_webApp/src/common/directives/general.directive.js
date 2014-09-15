@@ -1,97 +1,100 @@
 angular.module('grockitApp.directives', [])
 
 .directive('youtube',function() {
-    return {
-      restrict: 'A',
-      link: function (scope, element, attrs) {
-        $(element).YouTubeModal({autoplay: 0, height: 480, width: '100%'});
-      }
-    };
-  })
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      $(element).YouTubeModal({autoplay: 0, height: 480, width: '100%'});
+    }
+  };
+})
 
 .directive('scorePrediction', function() {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/scorePrediction.tpl.html',
-      scope: {
-        groupTitle: '=',
-        totalScore: '=',
-        rangeInit: '=',
-        rangeEnd: '=',
-        isVisible: '=',
-        noScoreMessage: '@'
-      },
-      link: function (scope, element, attrs) {
-        scope.hasScore = function () {
-          return (scope.totalScore !== null && scope.totalScore > 0);
-        };
-      }
-    };
-  })
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/scorePrediction.tpl.html',
+    scope: {
+      groupTitle: '=',
+      totalScore: '=',
+      rangeInit: '=',
+      rangeEnd: '=',
+      isVisible: '=',
+      noScoreMessage: '@'
+    },
+    link: function (scope, element, attrs) {
+      scope.hasScore = function () {
+        return (scope.totalScore !== null && scope.totalScore > 0);
+      };
+    }
+  };
+})
 
 .directive('trackList', function(Utilities) {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/track-list.tpl.html',
-      scope: {
-        tracks: '=',
-        startPractice: '=',
-        getTitle: '=',
-        getScore: '=',
-        isVisible: '='
-      },
-      link: function (scope, element, attrs) {
-        scope.hasScore = function (track) {
-          return (scope.getScore(track) !== null && scope.getScore(track) > 0);
-        };
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/track-list.tpl.html',
+    scope: {
+      tracks: '=',
+      startPractice: '=',
+      getScore: '=',
+      isVisible: '='
+    },
+    link: function (scope, element, attrs) {
+      scope.panelBaseId = attrs.collapsePanelBodyId;
+      scope.panelId = attrs.collapsePanelId;
 
-        scope.getYourScorePredictionUrl = function(track){
-          var baseUrl=Utilities.originalGrockit(false).url;
-          Utilities.redirect(baseUrl+'/assessment/for_track/'+track.id);
-        }
-      }
-    };
-  })
+      scope.hasScore = function (track) {
+        return (scope.getScore(track) !== null && scope.getScore(track) > 0);
+      };
 
-.directive('breadcrumb', function() {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/breadcrumb.tpl.html',
-      scope: {
-        breadcrumbs: '='
-      }
-    };
-  })
-
-.directive('fadingText', function() {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/fading-text.tpl.html',
-      scope: {
-        word: '=',
-        isVisible: '='
-      },
-      link: function(scope, elem, atttrs) {
-        scope.word = scope.word.split("");
-      }
-    };
-  })
-
-.directive("trackToggle", function(){
-    return {
-      scope: {},
-      restrict: 'A',
-      transclude:true,
-      templateUrl: 'common/templates/directives/toggle-element.tpl.html',
-      link: function(scope){
-        scope.toggled = false;
-
-        scope.toggle = function(){
-          scope.toggled = !scope.toggled;
-        }
+      scope.getYourScorePredictionUrl = function(track){
+        var baseUrl=Utilities.originalGrockit(false).url;
+        Utilities.redirect(baseUrl+'/assessment/for_track/'+track.id);
       }
     }
- })
+
+  };
+})
+
+.directive('breadcrumb', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/breadcrumb.tpl.html',
+    scope: {
+      breadcrumbs: '='
+    }
+  };
+})
+
+.directive('fadingText', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/fading-text.tpl.html',
+    scope: {
+      word: '=',
+      isVisible: '='
+    },
+    link: function(scope, elem, atttrs) {
+      scope.word = scope.word.split("");
+    }
+  };
+})
+
+.directive("trackToggle", function(){
+  return {
+    scope: {},
+    restrict: 'A',
+    transclude:true,
+    templateUrl: 'common/templates/directives/toggle-element.tpl.html',
+    link: function(scope){
+      scope.toggled = false;
+
+      scope.toggle = function(){
+        scope.toggled = !scope.toggled;
+      }
+    }
+  }
+})
 
 .directive('btnRadio',function() {
   var activeClass = 'btn-info';
@@ -126,26 +129,26 @@ angular.module('grockitApp.directives', [])
 })
 
 .directive('topicList', function() {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/topics-list.tpl.html',
-      scope: {
-      },
-      link: function (scope, element, attrs) {
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/topics-list.tpl.html',
+    scope: {
+    },
+    link: function (scope, element, attrs) {
 
-      }
-    };
-  })
+    }
+  };
+})
 
 .directive('historyChart', function() {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/dashboard-history.tpl.html',
-      scope: {
-        historyInfo: '='
-      }
-    };
-  })
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/dashboard-history.tpl.html',
+    scope: {
+      historyInfo: '='
+    }
+  };
+})
 
 .directive('searchInput', function() {
   return {
@@ -155,22 +158,22 @@ angular.module('grockitApp.directives', [])
 })
 
 .directive('challengeDashboard', function(Utilities) {
-    return {
-      restrict: 'A',
-      templateUrl: 'common/templates/directives/dashboard-challenge.tpl.html',
-      scope: {
-        challenges: '='
-      },
-      link: function(scope){
-        scope.newChallenge = function (index) {
-          var currentChallenge = scope.challenges[index];
-          scope.challengeId=currentChallenge.id;
-          var baseUrl = Utilities.originalGrockit().url;
-          Utilities.redirect(baseUrl+'/assessment/introcards/'+scope.challengeId);
+  return {
+    restrict: 'A',
+    templateUrl: 'common/templates/directives/dashboard-challenge.tpl.html',
+    scope: {
+      challenges: '='
+    },
+    link: function(scope){
+      scope.newChallenge = function (index) {
+        var currentChallenge = scope.challenges[index];
+        scope.challengeId=currentChallenge.id;
+        var baseUrl = Utilities.originalGrockit().url;
+        Utilities.redirect(baseUrl+'/assessment/introcards/'+scope.challengeId);
 
-        };
+      };
 
-      }
-    };
-  });
+    }
+  };
+});
 

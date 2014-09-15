@@ -8,9 +8,6 @@ home.controller('SimpleDashController', ['$scope', 'Users', 'History', 'Tracks',
     $scope.historyVisible = false;
     Utilities.setActiveTab(0);
 
-    $scope.getTitle = function(track) {
-      return track.short_name;
-    };
 
     $scope.getScore = function(track) {
       return ($scope.score) ? $scope.score.tracks[track.id] : null;
@@ -21,7 +18,8 @@ home.controller('SimpleDashController', ['$scope', 'Users', 'History', 'Tracks',
       fetchTracksData: function() {
         $scope.loading = true;
         Tracks.getTracks().allByGroup($scope.activeGroupId, true).then(function(response) {
-          $scope.tracks = response.data.tracks;
+          var tracks =  _.forEach(response.data.tracks, function (track, i) { track['collapsed']=false;});
+          $scope.tracks =tracks ;
           $scope.loading = false;
 
         }).catch(function errorHandler(e) {
