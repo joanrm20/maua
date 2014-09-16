@@ -1,9 +1,4 @@
 angular.module("grockitApp.application")
-.constant('UserRoles', {
-    admin: 'admin',
-    member: 'member',
-    guest: 'guest'
-})
 .constant('environmentCons', {
     localGrockit: 'http://127.0.0.1:9000/',
     liveGrockit: location.origin + '/2.0',

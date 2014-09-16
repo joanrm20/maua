@@ -1,15 +1,16 @@
 // load all of the dependencies asynchronously.
 
 var paths={
-  jqueryGrockit:'common/jquery.grockit.js',
-  restAngularFactory:'app/common/api-requests/restAngular.service.js',
-  restAngular:'app/common/api-requests/restAngular.module.js',
+  jqueryGrockit:'app/shared/jquery.grockit.js',
+  restAngularFactory:'app/api-requests/restAngular.service.js',
+  restAngular:'app/api-requests/restAngular.module.js',
   home:'app/home/home.module.js',
   practiceGame:'app/practiceGame/practiceGame.module.js',
-  analyticService: 'app/common/services/analytic.service.js',
-  generalDirectives:'common/directives/general.directive.js',
-  authServices:'app/common/services/auth.services.js',
-  application:'app/application/application.module.js',
+  analyticService: 'app/shared/services/analytic.service.js',
+  authServices:'app/shared/services/auth.services.js',
+  appModule:'app/application/application.module.js',
+  appConstants:'app/application/application.constants.js',
+  appDirectives:'app/components/application/application.directive.js',
   appController: 'app/application/application.ctrl.js',
   appFilters:'app/application/application.filters.js',
   appServices:'app/application/application.services.js',
@@ -18,12 +19,13 @@ var paths={
 
 $script([
   paths.jqueryGrockit,
-  paths.application,
+  paths.appModule,
+  paths.appConstants,
+  paths.appDirectives,
   paths.appController,
   paths.appFilters,
   paths.appServices,
-  paths.analyticService,
-  paths.generalDirectives
+  paths.analyticService
 
   ],'init')
 

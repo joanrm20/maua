@@ -42,8 +42,7 @@
   'grockitApp.requests',
   'grockitApp.authServices',
   'grockitApp.practiceGame',
-  'grockitApp.home',
-  'grockitApp.directives'
+  'grockitApp.home'
   ]))
 );
 
