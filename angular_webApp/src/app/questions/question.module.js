@@ -1,12 +1,12 @@
 'use strict';
 
-var practiceGame =  angular.module("grockitApp.question",['ng-breadcrumbs'])
+var questions =  angular.module("grockitApp.question",['ng-breadcrumbs'])
     .config(function ($httpProvider,$routeProvider, $controllerProvider, $compileProvider, $provide) {
-    practiceGame.controller = $controllerProvider.register;
-    practiceGame.directive = $compileProvider.directive;
-    practiceGame.routeProvider = $routeProvider;
-    practiceGame.factory = $provide.factory;
-    practiceGame.service = $provide.service;
+    questions.controller = $controllerProvider.register;
+    questions.directive = $compileProvider.directive;
+    questions.routeProvider = $routeProvider;
+    questions.factory = $provide.factory;
+    questions.service = $provide.service;
 
     var filePath = {
       common:{
@@ -26,9 +26,9 @@ var practiceGame =  angular.module("grockitApp.question",['ng-breadcrumbs'])
       resolve: {deps: function ($q, $rootScope) {
         var deferred = $q.defer(),
           essentials = [
-            filePath.question.questionCtrl,
             filePath.common.questTypesDct,
             filePath.common.practiceDct,
+            filePath.question.questionCtrl,
             filePath.common.practiceSrv,
             filePath.common.youtube
           ];

@@ -37,6 +37,7 @@
   'ngRoute',
   'ngSanitize',
   'ngCookies',
+  'grockitApp.components',
   'grockitApp.analyticService',
   'grockitApp.application',
   'grockitApp.requests',

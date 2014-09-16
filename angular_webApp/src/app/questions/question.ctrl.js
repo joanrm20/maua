@@ -1,4 +1,4 @@
-practiceGame.controller('QuestionController',['$scope','practiceSrv','Utilities','breadcrumbs','Alerts','practiceRequests','Timer', 'SplashMessages',
+questions.controller('QuestionController',['$scope','practiceSrv','Utilities','breadcrumbs','Alerts','practiceRequests','Timer', 'SplashMessages',
   function($scope,practiceSrv,Utilities,breadcrumbs,Alerts,practiceRequests,Timer, SplashMessages) {
 
     $scope.activeTracks = Utilities.getActiveTrack();

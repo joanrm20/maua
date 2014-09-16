@@ -1,5 +1,4 @@
-
-angular.module("grockitApp.practice")
+angular.module("grockitApp.components")
 
 .directive('ngCustomTopics', function () {
 

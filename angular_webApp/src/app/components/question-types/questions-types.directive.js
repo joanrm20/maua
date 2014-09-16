@@ -1,4 +1,4 @@
-angular.module("grockitApp.practice")
+angular.module("grockitApp.components")
 .directive('oneChoice', function () {
   return {
     restrict: 'A',

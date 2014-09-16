@@ -1,4 +1,4 @@
-angular.module("grockitApp.home")
+angular.module("grockitApp.components")
 
 .directive('scorePrediction', function() {
   return {

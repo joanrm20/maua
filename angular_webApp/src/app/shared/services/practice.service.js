@@ -31,11 +31,7 @@ practiceGame.factory('questionTypesService', function () {
         }
       }
       e.handled = true;
-
-
     });
-
-
 }
 
 function numericEntry(scope) {
@@ -134,7 +130,8 @@ practiceGame.factory('practiceSrv', function (Utilities, $q, practiceRequests, A
       var deferred = $q.defer(),
       setLayoutType = false, resultObject = {};
 
-      practiceRequests.questions().getQuestionById(questionToRequest).then(function (result) {
+      practiceRequests.questions().getQuestionById(questionToRequest)
+      .then(function (result) {
 
         resultObject.questionResult = result.data.question;
 
@@ -168,32 +165,29 @@ practiceGame.factory('practiceSrv', function (Utilities, $q, practiceRequests, A
           value["selected"] = false;
           resultObject.items.push(value);
         }
-        if(resultObject.lastAnswerLoaded=== 'MultipleChoiceMatrixTwoByThree' ||
-         resultObject.lastAnswerLoaded === 'MultipleChoiceMatrixThreeByThree'){
+        if(resultObject.lastAnswerLoaded=== 'MultipleChoiceMatrixTwoByThree' || resultObject.lastAnswerLoaded === 'MultipleChoiceMatrixThreeByThree'){
          resultObject.items = Practice.setQuestionTypeMatrixGroups(resultObject.items);
-     }
+       }
 
-     Practice.removeBadImage();
-     deferred.resolve(resultObject);
-   })
-.catch(function errorHandler(e) {
-  deferred.reject(resultObject);
-  Alerts.showAlert(Alerts.setErrorApiMsg(e), 'danger');
-});
+       Practice.removeBadImage();
+       deferred.resolve(resultObject);
+     }).catch(function errorHandler(e) {
+      deferred.reject(resultObject);
+      Alerts.showAlert(Alerts.setErrorApiMsg(e), 'danger');
+    });
 
-return deferred.promise;
+     return deferred.promise;
+   },
+    confirmChoice: function (questionResult, roundSessionAnswer, answers) {
+    var i, answerStatus = true, len = answers.length,
+    areSelectedAnswers = _.filter(answers, {'selected': true});
+    if (areSelectedAnswers.length > 0) {
+      angular.element('.choice button').removeClass('btn-primary');
 
-},
-confirmChoice: function (questionResult, roundSessionAnswer, answers) {
-  var i, answerStatus = true, len = answers.length,
-  areSelectedAnswers = _.filter(answers, {'selected': true});
-  if (areSelectedAnswers.length > 0) {
-    angular.element('.choice button').removeClass('btn-primary');
-
-    for (i = 0; i < len; i++) {
-      var answer = answers[i], selectIdButton = ('#' + answer.id);
-      if (answer.correct) {
-        if (answer.selected) {
+      for (i = 0; i < len; i++) {
+        var answer = answers[i], selectIdButton = ('#' + answer.id);
+        if (answer.correct) {
+          if (answer.selected) {
               /*Send answer response to server, important this line have to be inside this if
                * since just the users answers get into this evaluation
                * */
@@ -367,13 +361,10 @@ confirmChoice: function (questionResult, roundSessionAnswer, answers) {
         Alerts.showAlert(Alerts.setErrorApiMsg(error), 'warning');
 
       }
-
-
     },
     getTimingInformation: function (trackId, groupId, questionId) {
       var url = environmentCons.timingData + groupId + '/' + trackId + '/' + questionId + '.json';
       return $resource(url).query({array: true});
-
     },
     setMailToInformation: function (questionId, titleQuest) {
       return 'Problem with ' + titleQuest + ' question #' + questionId;
@@ -404,11 +395,9 @@ confirmChoice: function (questionResult, roundSessionAnswer, answers) {
       };
 
       Utilities.dialogService(options);
-
     }
   }
 });
-
 
 practiceGame.factory('Level', function () {
   var messages = {2: 'Lowest', 4: 'Low', 8: 'Medium', 16: 'High', 32: 'Highest'};

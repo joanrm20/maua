@@ -1,4 +1,4 @@
-angular.module("grockitApp.application")
+angular.module("grockitApp.components")
 
 .directive('youtube',function() {
   return {

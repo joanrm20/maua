@@ -26,9 +26,9 @@ var practiceGame =  angular.module("grockitApp.practice",['ng-breadcrumbs'])
     resolve: {deps: function ($q, $rootScope) {
       var deferred = $q.defer(),
       essentials = [
-      filePath.customPractice.practiceCtrl,
-      filePath.common.questTypesDct,
       filePath.common.practiceDct,
+      filePath.common.questTypesDct,
+      filePath.customPractice.practiceCtrl,
       filePath.common.practiceSrv,
       filePath.common.youtube
       ];

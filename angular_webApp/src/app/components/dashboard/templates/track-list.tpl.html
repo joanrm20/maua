@@ -3,9 +3,9 @@
     <button class="float-left btn btn-labeled btn-lg btn-primary btn-flat" ng-click="startPractice($index)"><span class="btn-label icon fa fa-lightbulb-o"></span>Start</button>
     &nbsp; &nbsp; &nbsp;
     <span class="text-xlg">
-      <strong>
-        <span ng-bind="getTitle(track)"></span>
-      </strong>
+    <strong>
+    <span ng-bind="getTitle(track)"></span>
+    </strong>
     </span>
     <div class=" text-center pull-right" ng-if="isVisible">
       <div ng-show="hasScore(track)">
@@ -14,53 +14,52 @@
         <span class="text-xs float-right valign-bottom">Your Score Prediction</span>
       </div>
       <div ng-hide="hasScore(track)">
-		      <button class="get-score-prediction btn-lg float-right btn btn-labeled btn-success" ng-click="getYourScorePredictionUrl(track)">Get your Score Prediction</button>
+            <button class="get-score-prediction btn-lg float-right btn btn-labeled btn-success" ng-click="getYourScorePredictionUrl(track)">Get your Score Prediction</button>
       </div>
-
     </div>
   </div>
 </a>
-
 -->
-
 <div class="panel-group" id="{{panelId}}" >
   <div class="panel" ng-repeat="track in tracks">
     <div class="panel-heading">
       <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{panelId}}"
-      href="#{{panelBaseId}}-{{$index}}">
-
-     <h4 ng-bind="track.short_name"></h4>
-      <div class=" text-center pull-right accordion-title-el" ng-if="isVisible">
-        <div class="" ng-show="hasScore(track)">
-          <h4 class="note-title"><span class="text-primary" ng-bind="getScore(track)"></span><br>
+        href="#{{panelBaseId}}-{{$index}}">
+        <h4 ng-bind="track.short_name"></h4>
+        <div class=" text-center pull-right accordion-title-el" ng-if="isVisible">
+          <div class="" ng-show="hasScore(track)">
+            <h4 class="note-title"><span class="text-primary" ng-bind="getScore(track)"></span><br>
             <span class="text-xs float-right valign-bottom">Your Score Prediction</span>
-          </h4>
-        </div>
-        <div ng-hide="hasScore(track)">
-          <button class="get-score-prediction btn-lg float-right btn btn-labeled btn-success" ng-click="getYourScorePredictionUrl(track)">Get your Score Prediction</button>
-        </div>
-      </div>
-    </a>
-  </div>
-  <div id="{{panelBaseId}}-{{$index}}" class="panel-collapse collapse out" style="height: auto;">
-    <div class="panel-body" ng-click="startPractice($index)">
-      <div class="row">
-        <div class="col-md-4">
-        <h4>
-        Algebra
-        </h4>
-        </div>
-        <div class="col-md-4">
-          <div class="progress">
-            <div class="progress-bar progress-bar-success" style="width: 35%"></div>
-            <div class="progress-bar progress-bar-warning" style="width: 20%"></div>
-            <div class="progress-bar progress-bar-danger" style="width: 10%"></div>
+            </h4>
+          </div>
+          <div ng-hide="hasScore(track)">
+            <button class="get-score-prediction btn-lg float-right btn btn-labeled btn-success" ng-click="getYourScorePredictionUrl(track)">Get your Score Prediction</button>
           </div>
         </div>
-        <div class="col-md-4">21/200</div>
-        <div class="col-md-4"></div>
+      </a>
+    </div>
+    <div id="{{panelBaseId}}-{{$index}}" class="panel-collapse collapse out" style="height: auto;">
+      <div class="panel-body" ng-click="startPractice($index)">
+        <div class="row track-list-row">
+          <div class="col-md-6">
+            <h4 class="text-slim">
+            Algebra
+            </h4>
+          </div>
+          <div class="col-md-4 text-slim track-list-margin">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success" style="width: 35%"></div>
+              <div class="progress-bar progress-bar-warning" style="width: 20%"></div>
+              <div class="progress-bar progress-bar-danger" style="width: 10%"></div>
+            </div>
+          </div>
+          <div class="col-md-2 text-right pull-right no-padding-r track-list-margin">
+            <span class="text-semibold">21/200</span>
+            |
+            <span class="text-semibold">70% Accuracy</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>

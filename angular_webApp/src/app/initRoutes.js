@@ -4,6 +4,7 @@ var paths={
   jqueryGrockit:'app/shared/jquery.grockit.js',
   restAngularFactory:'app/api-requests/restAngular.service.js',
   restAngular:'app/api-requests/restAngular.module.js',
+  components:'app/components/components.module.js',
   home:'app/home/home.module.js',
   practice:'app/practices/practice.module.js',
   question:'app/questions/question.module.js',
@@ -20,6 +21,7 @@ var paths={
 $script([
   paths.jqueryGrockit,
   paths.authServices,
+  paths.components,
   paths.appModule,
   paths.appDirectives,
   paths.appController,
