@@ -5,11 +5,11 @@ var paths={
   restAngularFactory:'app/api-requests/restAngular.service.js',
   restAngular:'app/api-requests/restAngular.module.js',
   home:'app/home/home.module.js',
-  practiceGame:'app/practiceGame/practiceGame.module.js',
+  practice:'app/practices/practice.module.js',
+  question:'app/questions/question.module.js',
   analyticService: 'app/shared/services/analytic.service.js',
   authServices:'app/shared/services/auth.services.js',
   appModule:'app/application/application.module.js',
-  appConstants:'app/application/application.constants.js',
   appDirectives:'app/components/application/application.directive.js',
   appController: 'app/application/application.ctrl.js',
   appFilters:'app/application/application.filters.js',
@@ -19,8 +19,8 @@ var paths={
 
 $script([
   paths.jqueryGrockit,
+  paths.authServices,
   paths.appModule,
-  paths.appConstants,
   paths.appDirectives,
   paths.appController,
   paths.appFilters,
@@ -33,9 +33,9 @@ $script([
   $script([
     paths.restAngular,
     paths.restAngularFactory,
-    paths.authServices,
     paths.home,
-    paths.practiceGame,
+    paths.practice,
+    paths.question,
     paths.app
     ], function () {
       angular.bootstrap(document, ['grockitApp']);

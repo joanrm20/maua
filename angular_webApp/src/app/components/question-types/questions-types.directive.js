@@ -1,4 +1,5 @@
-practiceGame.directive('oneChoice', function () {
+angular.module("grockitApp.practice")
+.directive('oneChoice', function () {
   return {
     restrict: 'A',
     templateUrl: 'app/components/question-types/templates/oneChoice.tpl.html',

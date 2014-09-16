@@ -1,5 +1,5 @@
 
-angular.module("grockitApp.practiceGame")
+angular.module("grockitApp.practice")
 
 .directive('ngCustomTopics', function () {
 

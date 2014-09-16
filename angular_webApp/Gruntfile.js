@@ -191,7 +191,6 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/app/{,*/}*.js',
             '<%= yeoman.dist %>/app/**/*.js',
-            '<%= yeoman.dist %>/common/**/*.js',
             '<%= yeoman.dist %>/scripts/*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
             '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
@@ -227,70 +226,60 @@ module.exports = function (grunt) {
         css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
         js: [
           '<%= yeoman.dist %>/app/**/*.js',
-          '<%= yeoman.dist %>/common/*.js',
           '<%= yeoman.dist %>/templates/*.html',
           '<%= yeoman.dist %>/index.html'],
         options: {
-            assetsDirs: ['<%= yeoman.dist %>'        ,
-                '<%= yeoman.dist %>/app/account',
+            assetsDirs: ['<%= yeoman.dist %>',
+                '<%= yeoman.dist %>/app/application',
+                '<%= yeoman.dist %>/app/components/application',
                 '<%= yeoman.dist %>/app/home',
                 '<%= yeoman.dist %>/app/home/dashboard/',
-                '<%= yeoman.dist %>/app/home/track-dashboard',
-                '<%= yeoman.dist %>/app/practiceGame/common',
-                '<%= yeoman.dist %>/app/practiceGame/custom-practice',
-                '<%= yeoman.dist %>/app/practiceGame/question',
-                '<%= yeoman.dist %>/app/practiceGame',
-                '<%= yeoman.dist %>/common/restAngular',
-                '<%= yeoman.dist %>/common/directives',
-                '<%= yeoman.dist %>/common/services',
-                '<%= yeoman.dist %>/common/filters',
-              '<%= yeoman.dist %>/common/constants',
+                '<%= yeoman.dist %>/app/components/dashboard',
+                '<%= yeoman.dist %>/app/shared',
+                '<%= yeoman.dist %>/shared/services',
+                '<%= yeoman.dist %>/app/practices',
+                '<%= yeoman.dist %>/app/components/practices',
+                '<%= yeoman.dist %>/app/questions',
+                '<%= yeoman.dist %>/app/components/question-types',
+                '<%= yeoman.dist %>/app/api-requests',
                 '<%= yeoman.dist %>/app',
-                '<%= yeoman.dist %>/common',
-                '<%= yeoman.dist %>/common/lib'
+                '<%= yeoman.dist %>/lib'
             ],
             patterns: {
 
                 js: [
                     [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images'],
                     /*Change references for account */
-                    [/(application.ctrl\.js)/, 'Replacing references to account ctrl'],
-                    [/(account.module\.js)/, 'Replacing references account to module'],
+                    [/(application.ctrl\.js)/, 'Replacing references to application ctrl'],
+                    [/(application.module\.js)/, 'Replacing references application to module'],
+                    [/(application.filters\.js)/, 'Replacing references application to filters'],
+                    [/(application.services\.js)/, 'Replacing references application to services'],
+                    [/(application.directive\.js)/, 'Replacing references application to directives'],
                     /*Change references for home controllers and services*/
                     [/(sDashboard.ctrl\.js)/, 'Replacing references to home ctrl'],
                     [/(sDashboard.service\.js)/, 'Replacing references to home service'],
+                    [/(dashboard.directive\.js)/, 'Replacing references to dasboard directive'],
                     [/(home.module\.js)/, 'Replacing references to home module'],
                     /*Change references for practice controllers and services*/
-                    [/(dashboard.ctrl\.js)/, 'Replacing references to dashboard ctrl'],
-                    [/(dashboard.service\.js)/, 'Replacing references to dashboard service'],
-                    [/(customPractice.ctrl\.js)/, 'Replacing references to practice ctrl'],
-                    [/(question.ctrl\.js)/, 'Replacing references to question directive'],
-
+                    [/(practice.ctrl\.js)/, 'Replacing references to practice ctrl'],
                     [/(practice.directive\.js)/, 'Replacing references to practice directive'],
                     [/(practice.service\.js)/, 'Replacing references to practice service'],
-                    [/(practiceGame.module\.js)/, 'Replacing references to practice module'],
+                    [/(practice.module\.js)/, 'Replacing references to practice module'],
+
+                    [/(question.ctrl\.js)/, 'Replacing references to question ctrl'],
+                    [/(question.module\.js)/, 'Replacing references to question module'],
+                    [/(question-types.directive\.js)/, 'Replacing references to question-types directive'],
 
                     [/(restAngular.module\.js)/, 'Replacing references to restAngular module'],
                     [/(restAngular.service\.js)/, 'Replacing references to restAngular service'],
 
-                    [/(general.directive\.js)/, 'Replacing references to general directives'],
-                    [/(application.services\.js)/, 'Replacing references to general services'],
-
                     [/(auth.services\.js)/, 'Replacing references to auth services'],
-
-                    [/(application.filters\.js)/, 'Replacing references to application filters'],
-
-                   [/(application.constants\.js)/, 'Replacing references to application constants'],
 
                     [/(analytic.service\.js)/, 'Replacing references to Analytic services'],
 
                     [/(jquery.grockit\.js)/, 'Replacing references to practice module'],
 
-                    [/(app\.js)/, 'Replacing references to app'],
-
-
-
-                    [/(underscore\.js)/, 'Replacing references to underscore ']
+                    [/(app\.js)/, 'Replacing references to app']
                 ]
             }
       }
@@ -400,7 +389,6 @@ module.exports = function (grunt) {
           src: [
               'app/**/*',
               'assets/**/*',
-              'common/**/*',
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',

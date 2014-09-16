@@ -14,24 +14,24 @@
            if ($location.path() === '/' || $location.path() === '/' + response.currentGroup || $location.path() == '') {
 
             Utilities.internalRedirect('/' + response.currentGroup+ '/dashboard');
-           }
-         }
+          }
+        }
 
-       }).catch(function errorHandler(e) {
-         Alerts.showAlert(Alerts.setErrorApiMsg(e), 'danger');
-       });
+      }).catch(function errorHandler(e) {
+       Alerts.showAlert(Alerts.setErrorApiMsg(e), 'danger');
+     });
 
-     }
-     else {
-       $rootScope.$destroy();
-       $("body").html('The user is not logged in! <a href=\"/logout\">Click here to restart</a>.');
-       event.preventDefault();
+    }
+    else {
+     $rootScope.$destroy();
+     $("body").html('The user is not logged in! <a href=\"/logout\">Click here to restart</a>.');
+     event.preventDefault();
 
-     }
-    });
+   }
+ });
 
 
-   });
+ });
 }(angular.module("grockitApp", [
   'ngResource',
   'ngRoute',
@@ -41,7 +41,8 @@
   'grockitApp.application',
   'grockitApp.requests',
   'grockitApp.authServices',
-  'grockitApp.practiceGame',
+  'grockitApp.practice',
+  'grockitApp.question',
   'grockitApp.home'
   ]))
 );
