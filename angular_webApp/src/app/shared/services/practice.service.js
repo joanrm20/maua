@@ -134,6 +134,7 @@ practiceGame.factory('practiceSrv', function (Utilities, $q, practiceRequests, A
       .then(function (result) {
 
         resultObject.questionResult = result.data.question;
+        resultObject.fixedWidth = resultObject.questionResult.question_set.fixed_info_width;
 
         if (resultObject.lastAnswerLoaded == '' || resultObject.lastAnswerLoaded != resultObject.questionResult.kind) {
           resultObject.lastAnswerLoaded = resultObject.questionResult.kind;

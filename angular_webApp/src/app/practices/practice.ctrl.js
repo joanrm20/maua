@@ -118,6 +118,7 @@ practiceGame.controller('CustomPracticeController', ['$scope', 'practiceSrv', 'U
           $scope.items = result.items;
           $scope.loading = false;
           $scope.position++;
+          $scope.fixedWidth = result.fixedWidth;
 
           /*find correct answer to be send to timing section*/
           var correctAnswerId = Utilities.findInCollection(result.questionResult.answers, {

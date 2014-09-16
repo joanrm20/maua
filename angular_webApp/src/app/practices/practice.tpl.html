@@ -50,7 +50,7 @@ last-answer-loaded="lastAnswerLoaded"></div>
             <span class="panel-title"><i class="panel-title-icon fa fa-file-text-o"></i>Information</span>
           </div>
           <div class="panel-body">
-            <span ng-bind-html='questionInformation'></span>
+            <div class="question-information" ng-class="{'fixed-width': fixedWidth}" ng-bind-html='questionInformation'></div>
           </div>
         </div>
       </div>
