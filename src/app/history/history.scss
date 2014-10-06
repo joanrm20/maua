@@ -1,0 +1,31 @@
+.history-list:nth-child(2n) {
+  background-color: #ededed
+}
+.history-row {
+  margin: 0 !important;
+}
+.history-list {
+  margin: 0 !important;
+  background-color: #f2f2f2;
+
+  padding: 5px !important;
+  line-height: 25px;
+
+  .history-item {
+
+    a {
+      line-height: 10px;
+    }
+
+    i.fa {
+      text-align: center;
+      width: 25px;
+      height: 25px;
+      font-size: 25px;
+      margin-left: -5px;
+    }
+  }
+}
+
+.history-pagination {
+}
