@@ -12,7 +12,7 @@ dist/
 
 # Include when developing application packages.
 pubspec.lock
-
+*sublime*
 .idea/
 *.log
 /.sass-cache/
