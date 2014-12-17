@@ -25,29 +25,38 @@
     return directive;
 
     function link(scope, element, attrs) {
-      
+
       angular.element("#mySel2").select2({
         closeOnSelect: false
       });
+      scope.itemsLimit = function() {
+        return pageSize * pagesShown;
+      };
+      scope.hasMoreItemsToShow = function() {
+        return pagesShown < (scope.trackTags.length / pageSize);
+      };
+      scope.showMoreItems = function() {
+        pagesShown = pagesShown + 1;
+      };
 
       var pagesShown = 1,
         pageSize = 5,
         collection = [{
           name: 'Absolute value',
           percent: '80%',
-          perctCss: 'fmcircle_green'
+          perctCss: 'percent_80'
         }, {
           name: 'Algebra',
           percent: '0%',
-          perctCss: 'fmcircle_blue'
+          perctCss: 'blue-box'
         }, {
           name: 'Angles',
           percent: '10%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_10'
         }, {
           name: 'Area',
           percent: '20%',
-          perctCss: 'fmcircle_orange'
+          perctCss: 'percent_20'
         }, {
           name: 'Arithmetic',
           percent: '45%',
@@ -59,11 +68,11 @@
         }, {
           name: 'Circles',
           percent: '14%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_10'
         }, {
           name: 'Coordinate geometry',
           percent: '19%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_10'
         }, {
           name: 'Data Sufficiency',
           percent: '35%',
@@ -71,23 +80,23 @@
         }, {
           name: 'Decimals',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Distance problem',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Estimation',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Evaluating expressions',
           percent: '19%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_20'
         }, {
           name: 'Exponents and Roots',
           percent: '25%',
-          perctCss: 'fmcircle_orange'
+          perctCss: 'percent_20'
         }, {
           name: 'Factors, Divisibility and Prime Numbers',
           percent: '5%',
@@ -95,40 +104,41 @@
         }, {
           name: 'Fractions',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Functions',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Geometry',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Inequalities',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Inscribed Figures',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Interest',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Interpretation of graphs and tables',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, {
           name: 'Intersecting lines and angles',
           percent: '30%',
-          perctCss: 'fmcircle_red'
+          perctCss: 'percent_30'
         }, ];
 
       scope.trackTags = collection;
 
 
+      /*This needs to be check it and if it's not used anymore, then remove the code*/
       var overlayTrack = null;
       scope.shouldShowOverlay = function(track) {
         if (track.hasScore) {
@@ -147,16 +157,6 @@
         var baseUrl = utilities.originalGrockit(false).url;
         utilities.redirect(baseUrl + '/assessment/for_track/' + track.id);
       }
-
-      scope.itemsLimit = function() {
-        return pageSize * pagesShown;
-      };
-      scope.hasMoreItemsToShow = function() {
-        return pagesShown < (scope.trackTags.length / pageSize);
-      };
-      scope.showMoreItems = function() {
-        pagesShown = pagesShown + 1;
-      };
     }
   }
 
