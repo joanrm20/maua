@@ -19,123 +19,41 @@
         tracks: '=',
         startPractice: '=',
         isVisible: '=',
-        canPractice: '='
+        canPractice: '=',
+        titles: '='
       }
     };
     return directive;
 
     function link(scope, element, attrs) {
+      var pagesShown = 1,
+        pageSize = 5;
 
       angular.element("#mySel2").select2({
         closeOnSelect: false
       });
+      scope.trackTest = {
+        id: "baebea04-ed61-9dd9-dca2-d389f4957224",
+        items: [],
+        name: "Arithmetic and Number Properties",
+        score_prediction: null,
+        total_questions_answered: 162,
+        total_questions_answered_correctly: 87,
+        total_questions_available: 161,
+        type: "Track",
+        url: "/gre/tracks/baebea04-ed61-9dd9-dca2-d389f4957224/practice"
+      };
       scope.itemsLimit = function() {
         return pageSize * pagesShown;
       };
       scope.hasMoreItemsToShow = function() {
-        return pagesShown < (scope.trackTags.length / pageSize);
+        if (angular.isDefined(scope.titles))
+          return pagesShown < (scope.titles.length / pageSize);
       };
       scope.showMoreItems = function() {
         pagesShown = pagesShown + 1;
       };
 
-      var pagesShown = 1,
-        pageSize = 5,
-        collection = [{
-          name: 'Absolute value',
-          percent: '80%',
-          perctCss: 'percent_80'
-        }, {
-          name: 'Algebra',
-          percent: '0%',
-          perctCss: 'blue-box'
-        }, {
-          name: 'Angles',
-          percent: '10%',
-          perctCss: 'percent_10'
-        }, {
-          name: 'Area',
-          percent: '20%',
-          perctCss: 'percent_20'
-        }, {
-          name: 'Arithmetic',
-          percent: '45%',
-          perctCss: 'percent_40'
-        }, {
-          name: 'Averages',
-          percent: '52%',
-          perctCss: 'percent_50'
-        }, {
-          name: 'Circles',
-          percent: '14%',
-          perctCss: 'percent_10'
-        }, {
-          name: 'Coordinate geometry',
-          percent: '19%',
-          perctCss: 'percent_10'
-        }, {
-          name: 'Data Sufficiency',
-          percent: '35%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Decimals',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Distance problem',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Estimation',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Evaluating expressions',
-          percent: '19%',
-          perctCss: 'percent_20'
-        }, {
-          name: 'Exponents and Roots',
-          percent: '25%',
-          perctCss: 'percent_20'
-        }, {
-          name: 'Factors, Divisibility and Prime Numbers',
-          percent: '5%',
-          perctCss: 'percent_0'
-        }, {
-          name: 'Fractions',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Functions',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Geometry',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Inequalities',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Inscribed Figures',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Interest',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Interpretation of graphs and tables',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, {
-          name: 'Intersecting lines and angles',
-          percent: '30%',
-          perctCss: 'percent_30'
-        }, ];
-
-      scope.trackTags = collection;
 
 
       /*This needs to be check it and if it's not used anymore, then remove the code*/

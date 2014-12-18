@@ -6,16 +6,17 @@
 
   /*Manually injection will avoid any minification or injection problem*/
   SimpleDashController.$inject = ['$window', '$scope', 'dashboard', 'UsersApi', 'utilities', 'Auth', 'currentProduct',
-    'membershipService', 'setItUpUserProgress', 'setItUpScorePrediction','detectUtils'
+    'membershipService', 'setItUpUserProgress', 'setItUpScorePrediction', 'detectUtils','$timeout'
   ];
 
   function SimpleDashController($window, $scope, dashboard, UsersApi, utilities, Auth, currentProduct, membershipService,
-    setItUpUserProgress, setItUpScorePrediction,detectUtils) {
+    setItUpUserProgress, setItUpScorePrediction, detectUtils,$timeout) {
     /* jshint validthis: true */
     var vmDash = this,
       dashObserver = null;
     vmDash.showingTour = false;
     vmDash.loading = true;
+    vmDash.titles=[];
     vmDash.isChallengeAvailable = false;
     vmDash.loadingMessage = 'Loading...';
     vmDash.historyVisible = false;
@@ -44,6 +45,19 @@
               vmDash.historyVisible = false;
               var baseUrl = utilities.originalGrockit(false).url;
               vmDash.paymentPage = baseUrl + '/' + vmDash.activeGroupId + '/subscriptions/new';
+              dashboard.getPracticeTitles().then(function(response) {
+                var i=1;
+                 var pushToTags= function(data){
+                    return function (){
+                       vmDash.titles.push(data);
+                    };
+                };
+
+                _.forEach(response, function(obj) {
+                  $timeout(pushToTags(obj), i* 200);
+                  i++;
+                });
+              });
             }
           });
         }
@@ -73,10 +87,10 @@
       if (vmDash.canPractice) {
         if (angular.isDefined(subject)) {
 
-            utilities.setActiveTrack(subject, trackId);
-            utilities.internalRedirect('/' + vmDash.activeGroupId + '/custom-practice/');
+          utilities.setActiveTrack(subject, trackId);
+          utilities.internalRedirect('/' + vmDash.activeGroupId + '/custom-practice/');
 
-       /*  if (vmDash.activeGroupId === 'gre') { } else {
+          /*  if (vmDash.activeGroupId === 'gre') { } else {
             var url = '/' + vmDash.activeGroupId + '/' + trackId + '/play';
             utilities.redirect(url);
           }*/
@@ -87,8 +101,6 @@
 
     var SimpleDashBoard = {
       getDashboard: function(groupId) {
-
-
         dashboard.setDashboardData(groupId).then(function(result) {
           var hasQuestionsAnswered = dashboard.hasQuestionsAnswered();
           if (!hasQuestionsAnswered && vmDash.activeGroupId !== 'gre' && !detectUtils.isMobile()) vmDash.showTour = true;
@@ -100,7 +112,7 @@
           } else {
 
             if (vmDash.enableScore)
-               SimpleDashBoard.fetchScorePrediction();
+              SimpleDashBoard.fetchScorePrediction();
 
             SimpleDashBoard.fetchTracks();
             SimpleDashBoard.getHistoryInformation();

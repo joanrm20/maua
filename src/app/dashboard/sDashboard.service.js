@@ -5,9 +5,9 @@
   .module("grockitApp.dashboard")
   .service('dashboard', dashboard)
 
-  dashboard.$inject = ['$q', 'DashboardApi'];
+  dashboard.$inject = ['$q', 'DashboardApi','utilities'];
 
-  function dashboard($q, DashboardApi) {
+  function dashboard($q, DashboardApi,utilities) {
     var dashboardData = null,
     _dashboarFn={
      getScore: function(track) {
@@ -79,9 +79,30 @@
       return dashboardData.challenge;
     }
 
-
     this.hasQuestionsAnswered = function(){
      return  (dashboardData.progress.all.total_questions_answered >= 1);
+    }
+
+    this.getPracticeTitles = function(){
+
+      function getBoxColor(accuracy,base){
+          if(accuracy<=base)
+            return 'percent_'+base;
+          else
+            return getBoxColor(accuracy,base+10);
+      }
+
+      var deferred = $q.defer();
+     DashboardApi.getTitles().$promise.then(function(response){
+          _.forEach(response, function(obj,i){
+            obj['accuracy']= utilities.random(0,100);
+            obj['totalAnswered']= utilities.random(0,obj['Total Questions']);
+            obj['progress'] = (obj['totalAnswered']/obj['Total Questions'])*100;
+            obj['boxColor'] = getBoxColor(obj['accuracy'],10);
+          });
+        deferred.resolve(response);
+      });
+      return deferred.promise;
     }
 
   }

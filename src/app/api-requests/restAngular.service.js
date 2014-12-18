@@ -17,7 +17,7 @@
   HistoryApi.$inject = ['Restangular', 'Headers'];
   GroupsApi.$inject = ['Restangular', 'Headers'];
   YoutubeVideoApi.$inject = ['$q', 'environmentCons'];
-  DashboardApi.$inject = ['Restangular', 'Headers'];
+  DashboardApi.$inject = ['Restangular', 'Headers','$resource'];
   ReviewAPI.$inject = ['Restangular', 'Headers'];
 
   function Headers(Restangular) {
@@ -169,17 +169,23 @@
     }
   }
 
-  function DashboardApi(Restangular, Headers){
+  function DashboardApi(Restangular, Headers,$resource){
     Headers.updateDefaultHeader();
 
     var service = {
-      getDashboard: getDashboard
+      getDashboard: getDashboard,
+      getTitles:getTitles
     }
     return service;
 
 
     function getDashboard(groupId) {
       return Restangular.one(groupId,'dashboard').get();
+    }
+
+    function getTitles(){
+      var url = 'https://s3.amazonaws.com/go.grockit.com/2.0/tags/tile_data.json';
+      return $resource(url).query();
     }
   }
 
