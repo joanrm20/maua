@@ -16,7 +16,6 @@
       dashObserver = null;
     vmDash.showingTour = false;
     vmDash.loading = true;
-    vmDash.titles=[];
     vmDash.isChallengeAvailable = false;
     vmDash.loadingMessage = 'Loading...';
     vmDash.historyVisible = false;
@@ -46,17 +45,7 @@
               var baseUrl = utilities.originalGrockit(false).url;
               vmDash.paymentPage = baseUrl + '/' + vmDash.activeGroupId + '/subscriptions/new';
               dashboard.getPracticeTitles().then(function(response) {
-                var i=1;
-                 var pushToTags= function(data){
-                    return function (){
-                       vmDash.titles.push(data);
-                    };
-                };
-
-                _.forEach(response, function(obj) {
-                  $timeout(pushToTags(obj), i* 200);
-                  i++;
-                });
+                vmDash.titles=response;
               });
             }
           });

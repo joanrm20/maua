@@ -15,6 +15,7 @@
   'ngRoute',
   'ngSanitize',
   'ngCookies',
+  'wu.masonry',
   'ng.deviceDetector',
   'grockitApp.application',
   'grockitApp.components',

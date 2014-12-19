@@ -8,55 +8,53 @@
     </div>
     <div class="col-md-6">
       <h4>Sort by</h4>
-      <ul id="filter" class="filter text-center"  >
-        <li><a  href="javascript:void(0)" data-group="all">All</a></li>
-        <li><a href="javascript:void(0)" data-group="percent_100">Smart Sort</a>
-      </li>
-      <li><a href="javascript:void(0)" data-group="percent_80">Skill Level</a>
-    </li>
-    <li><a hhref="javascript:void(0)" data-group="percent_90">Progress</a>
-  </li>
-  <li><a href="javascript:void(0)" data-group="percent_40">Alphabetical</a>
-</li>
-<li><a class="active" href="#" data-group="all">All</a></li>
-</ul>
-</div>
-</div>
-</div>
-<!--/row -->
-<div class="row">
-<div ng-repeat="item in titles | limitTo: itemsLimit()" class='item' data-groups='["all","{{item.boxColor}}"]' data-title="{{item['Track Name']}}">
-<div class="col-lg-3 col-sm-3">
-<section class="skillbox bg-image-{{$index % 10}}">
-<div class="black-overlay">
-  <ul class="list-unstyled list-inline text-center">
-      <button class="btn btn-primary btn-flat" youtube rel="zXxJIqzBE0M" ><i class="fa fa-fw fa-lightbulb-o"></i> Learn</button>
-
-    <li>
-    </li>
-    <li>
-      <button class="btn btn-primary btn-flat" ng-click="startPractice(trackTest,'baebea04-ed61-9dd9-dca2-d389f4957224')"><i class="fa fa-fw fa-pencil" ></i> Practice</button>
-    </li>
-  </ul>
-  <a class="close-overlay hidden">x</a>
-</div>
-<div class="skill-color-overlay {{item.boxColor}}"></div>
-<div class="skill-info">
-  <h3 ng-bind="item['Tile Name']" class="text-center"></h3>
-  <aside class="skill-progress">
-    <strong><i class="fa fa-fw fa-question-circle"></i> {{item['Total Questions']}}/{{item.totalAnswered}}</strong>
-    <strong class="ng-binding"><i class="fa fa-fw fa-mortar-board"></i> {{subtrack.percent}}</strong>
-  </aside>
-  <div class="progress progress-striped" style="height: 20px;">
-    <div class="progress-bar" style="width: {{item.progress}}%"></div>
+      <ul id="filter" class="filter text-center">
+        <li><a href="javascript:void(0)" ng-click="order = 'boxColor'">Smart Sort</a>
+        </li>
+        <li><a href="javascript:void(0)" ng-click="order = 'totalAnswered'">Skill Level</a>
+        </li>
+        <li><a hhref="javascript:void(0)" ng-click="order = 'progress'">Progress</a>
+        </li>
+        <li><a href="javascript:void(0)" ng-click="order = 'Tile Name'">Alphabetical</a>
+        </li>
+        <li><a class="active" href="#" ng-click="order = ' '">All</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
-</section>
-</div>
-</div>
+
+<!--/row -->
+<div class="grid" masonry>
+  <div class="masonry-brick col-lg-3 col-sm-3" ng-repeat="item in titles | filter: { name: nameFilter } | orderBy: order">
+    <section class="skillbox bg-image-{{$index % 10}}">
+      <div class="black-overlay">
+        <ul class="list-unstyled list-inline text-center">
+          <button class="btn btn-primary btn-flat" youtube rel="zXxJIqzBE0M"><i class="fa fa-fw fa-lightbulb-o"></i> Learn</button>
+          <li>
+          </li>
+          <li>
+            <button class="btn btn-primary btn-flat" ng-click="startPractice(trackTest,'baebea04-ed61-9dd9-dca2-d389f4957224')"><i class="fa fa-fw fa-pencil"></i> Practice</button>
+          </li>
+        </ul>
+        <a class="close-overlay hidden">x</a>
+      </div>
+      <div class="skill-color-overlay {{item.boxColor}}"></div>
+      <div class="skill-info">
+        <h3 ng-bind="item['Tile Name']" class="text-center"></h3>
+        <aside class="skill-progress">
+          <strong><i class="fa fa-fw fa-question-circle"></i> {{item['Total Questions']}}/{{item.totalAnswered}}</strong>
+          <strong class="ng-binding"><i class="fa fa-fw fa-mortar-board"></i> {{item.percent}}</strong>
+        </aside>
+        <div class="progress progress-striped" style="height: 20px;">
+          <div class="progress-bar" style="width: {{item.progress}}%"></div>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 <div class="row">
-<div class="col-md-2">
-<a class="cursor-a" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Show more</a>
-</div>
+  <div class="col-md-2">
+    <a class="cursor-a" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">Show more</a>
+  </div>
 </div>
